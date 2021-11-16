@@ -1,6 +1,7 @@
 import csv
 import datetime
 import json
+import copy
 
 
 def read_flight_data(dst):
@@ -40,7 +41,7 @@ def construct_graph(flights):
 
             flight_graph[origin].add(flight['destination'])
 
-    ''' 
+    '''
     variant with list, probably not to be used
     for flight in flights:
         if flight['origin'] not in flight_graph:
@@ -100,20 +101,25 @@ def find_all_paths(src, dst, flight_data, graph):
 
 def convert_to_JSON(flight_paths):
     json_export = []
+
     for flight_path in flight_paths:
         bags_allowed = float('inf')
         current_flight = {}
         flights = []
         total_price = 0
-        travel_time = (flight_path[-1]['arrival']-flight_path[0]['departure'])
+
+        travel_time = (flight_path[-1]['arrival'] -
+                       flight_path[0]['departure'])
+
         for flight in flight_path:
-            flight['departure'] = flight['departure'].isoformat()
-            flight['arrival'] = flight['arrival'].isoformat()
+            current_flight = copy.deepcopy(flight)
+            current_flight['departure'] = current_flight['departure'].isoformat()
+            current_flight['arrival'] = current_flight['arrival'].isoformat()
 
-            flights.append(flight)
-            total_price = total_price + flight["base_price"]
+            flights.append(current_flight)
+            total_price = total_price + current_flight["base_price"]
 
-            bags_allowed = min(bags_allowed, flight["bags_allowed"])
+            bags_allowed = min(bags_allowed, current_flight["bags_allowed"])
 
         current_flight = {
             "flights": flights,
@@ -127,12 +133,15 @@ def convert_to_JSON(flight_paths):
         json_export.append(current_flight)
     print(json.dumps(json_export, indent=4))
 
+    with open(f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json", mode='w') as write_file:
+        json.dump(json_export, write_file, indent=4)
+
 
 if __name__ == '__main__':
-    flight_data = read_flight_data('example/example0.csv')
-    # print(flight_data)
+    flight_data = read_flight_data('example/example1.csv')
+
     flight_graph = construct_graph(flight_data)
-    # print(flight_graph)
-    possible_paths = find_all_paths('ECV', 'RFZ', flight_data, flight_graph)
+
+    possible_paths = find_all_paths('SML', 'NIZ', flight_data, flight_graph)
 
     convert_to_JSON(possible_paths)
