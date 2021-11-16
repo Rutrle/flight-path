@@ -95,18 +95,31 @@ def find_all_paths(src, dst, flight_data, bags_num=0):
 
 
 def convert_to_JSON(flight_paths, bag_num):
+    '''
+    Converts 'flight_paths' to correct output format and then 
+    :param flight_paths: list
+    :param bag_num: int
+
+    '''
     json_export = []
 
     for flight_path in flight_paths:
-        current_path = prepare_flight_path(flight_path)
+        current_path = prepare_flight_path(flight_path, bag_num)
         json_export.append(current_path)
+
     print(json.dumps(json_export, indent=4))
 
     with open(f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json", mode='w') as write_file:
         json.dump(json_export, write_file, indent=4)
 
 
-def prepare_flight_path(flight_path):
+def prepare_flight_path(flight_path, bag_num):
+    '''
+    gives data from single valid flight path correct structure for json export
+    :param flight_path: dict
+    :param bag_num: int
+    :returns: dict
+    '''
     bags_allowed = float('inf')
     flights = []
     total_price = 0
@@ -120,8 +133,7 @@ def prepare_flight_path(flight_path):
         current_flight['arrival'] = current_flight['arrival'].isoformat()
 
         flights.append(current_flight)
-        total_price = total_price + \
-            current_flight["base_price"] + \
+        total_price += current_flight["base_price"] + \
             current_flight["bag_price"]*bag_num
 
         bags_allowed = min(bags_allowed, current_flight["bags_allowed"])
@@ -146,5 +158,5 @@ if __name__ == '__main__':
     bag_num = 2
     possible_paths = find_all_paths(
         'EZO', 'ZRW', flight_data, bag_num)
-
+    print(possible_paths)
     convert_to_JSON(possible_paths, bag_num)
