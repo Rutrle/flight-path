@@ -1,0 +1,212 @@
+[
+    {
+        "flights": [
+            {
+                "flight_no": "WM478",
+                "origin": "NIZ",
+                "destination": "DHE",
+                "departure": "2021-09-01T08:50:00",
+                "arrival": "2021-09-01T14:00:00",
+                "base_price": 248.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "WM608",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-01T19:45:00",
+                "arrival": "2021-09-01T21:15:00",
+                "base_price": 46.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 294.0,
+        "travel_time": "12:25:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM567",
+                "origin": "NIZ",
+                "destination": "NRX",
+                "departure": "2021-09-01T11:15:00",
+                "arrival": "2021-09-01T14:25:00",
+                "base_price": 51.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "WM395",
+                "origin": "NRX",
+                "destination": "SML",
+                "departure": "2021-09-01T17:40:00",
+                "arrival": "2021-09-01T20:00:00",
+                "base_price": 52.0,
+                "bag_price": 12.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 103.0,
+        "travel_time": "8:45:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "WM094",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-01T21:25:00",
+                "arrival": "2021-09-02T01:30:00",
+                "base_price": 122.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 122.0,
+        "travel_time": "4:05:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM218",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-01T22:30:00",
+                "arrival": "2021-09-02T02:35:00",
+                "base_price": 120.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 120.0,
+        "travel_time": "4:05:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "WM094",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-02T21:25:00",
+                "arrival": "2021-09-03T01:30:00",
+                "base_price": 122.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 122.0,
+        "travel_time": "4:05:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM218",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-03T22:30:00",
+                "arrival": "2021-09-04T02:35:00",
+                "base_price": 120.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 120.0,
+        "travel_time": "4:05:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "WM094",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-06T21:25:00",
+                "arrival": "2021-09-07T01:30:00",
+                "base_price": 122.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 122.0,
+        "travel_time": "4:05:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM218",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-07T22:30:00",
+                "arrival": "2021-09-08T02:35:00",
+                "base_price": 120.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 120.0,
+        "travel_time": "4:05:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "WM094",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-11T21:25:00",
+                "arrival": "2021-09-12T01:30:00",
+                "base_price": 122.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 122.0,
+        "travel_time": "4:05:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM218",
+                "origin": "NIZ",
+                "destination": "SML",
+                "departure": "2021-09-12T22:30:00",
+                "arrival": "2021-09-13T02:35:00",
+                "base_price": 120.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "SML",
+        "origin": "NIZ",
+        "total_price": 120.0,
+        "travel_time": "4:05:00"
+    }
+]

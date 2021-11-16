@@ -91,6 +91,7 @@ def find_all_paths(src, dst, flight_data, graph):
     airport_fin = []
 
     for i, new_flightpath in enumerate(flight_data[src]):
+        print(i)
         _inner_find_all_paths(graph, new_flightpath, dst,
                               current_path, flight_data, current_visited, i)
 
@@ -138,10 +139,10 @@ def convert_to_JSON(flight_paths):
 
 
 if __name__ == '__main__':
-    flight_data = read_flight_data('example/example1.csv')
-
+    flight_data = read_flight_data('example/example3.csv')
+    print(flight_data)
     flight_graph = construct_graph(flight_data)
 
-    possible_paths = find_all_paths('SML', 'NIZ', flight_data, flight_graph)
+    possible_paths = find_all_paths('EZO', 'ZRW', flight_data, flight_graph)
 
     convert_to_JSON(possible_paths)

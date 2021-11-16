@@ -1,0 +1,317 @@
+[
+    {
+        "flights": [
+            {
+                "flight_no": "DX586",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-01T08:40:00",
+                "arrival": "2021-09-01T10:55:00",
+                "base_price": 33.0,
+                "bag_price": 9.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 33.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "SJ497",
+                "origin": "LOM",
+                "destination": "GXV",
+                "departure": "2021-09-01T08:45:00",
+                "arrival": "2021-09-01T10:30:00",
+                "base_price": 16.0,
+                "bag_price": 14.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "SJ216",
+                "origin": "GXV",
+                "destination": "IUQ",
+                "departure": "2021-09-01T12:40:00",
+                "arrival": "2021-09-01T13:50:00",
+                "base_price": 25.0,
+                "bag_price": 14.0,
+                "bags_allowed": 1
+            },
+            {
+                "flight_no": "DX815",
+                "origin": "IUQ",
+                "destination": "IUT",
+                "departure": "2021-09-01T19:35:00",
+                "arrival": "2021-09-01T21:10:00",
+                "base_price": 34.0,
+                "bag_price": 9.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 75.0,
+        "travel_time": "12:25:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "QG613",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-01T15:25:00",
+                "arrival": "2021-09-01T17:40:00",
+                "base_price": 24.0,
+                "bag_price": 10.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 24.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "SJ609",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-01T22:35:00",
+                "arrival": "2021-09-02T00:50:00",
+                "base_price": 48.0,
+                "bag_price": 14.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 48.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "DX586",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-02T08:40:00",
+                "arrival": "2021-09-02T10:55:00",
+                "base_price": 33.0,
+                "bag_price": 9.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 33.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "QG662",
+                "origin": "LOM",
+                "destination": "GXV",
+                "departure": "2021-09-02T15:05:00",
+                "arrival": "2021-09-02T16:50:00",
+                "base_price": 43.0,
+                "bag_price": 10.0,
+                "bags_allowed": 1
+            },
+            {
+                "flight_no": "QG176",
+                "origin": "GXV",
+                "destination": "IUT",
+                "departure": "2021-09-02T21:35:00",
+                "arrival": "2021-09-02T22:40:00",
+                "base_price": 24.0,
+                "bag_price": 10.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 67.0,
+        "travel_time": "7:35:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "QG613",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-02T15:25:00",
+                "arrival": "2021-09-02T17:40:00",
+                "base_price": 24.0,
+                "bag_price": 10.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 24.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "SJ609",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-03T22:35:00",
+                "arrival": "2021-09-04T00:50:00",
+                "base_price": 48.0,
+                "bag_price": 14.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 48.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "DX586",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-05T08:40:00",
+                "arrival": "2021-09-05T10:55:00",
+                "base_price": 33.0,
+                "bag_price": 9.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 33.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "QG613",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-06T15:25:00",
+                "arrival": "2021-09-06T17:40:00",
+                "base_price": 24.0,
+                "bag_price": 10.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 24.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "SJ609",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-07T22:35:00",
+                "arrival": "2021-09-08T00:50:00",
+                "base_price": 48.0,
+                "bag_price": 14.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 48.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "DX586",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-09T08:40:00",
+                "arrival": "2021-09-09T10:55:00",
+                "base_price": 33.0,
+                "bag_price": 9.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 33.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "QG613",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-11T15:25:00",
+                "arrival": "2021-09-11T17:40:00",
+                "base_price": 24.0,
+                "bag_price": 10.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 24.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "SJ609",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-13T22:35:00",
+                "arrival": "2021-09-14T00:50:00",
+                "base_price": 48.0,
+                "bag_price": 14.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 48.0,
+        "travel_time": "2:15:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "DX586",
+                "origin": "LOM",
+                "destination": "IUT",
+                "departure": "2021-09-15T08:40:00",
+                "arrival": "2021-09-15T10:55:00",
+                "base_price": 33.0,
+                "bag_price": 9.0,
+                "bags_allowed": 1
+            }
+        ],
+        "bags_allowed": 1,
+        "destination": "IUT",
+        "origin": "LOM",
+        "total_price": 33.0,
+        "travel_time": "2:15:00"
+    }
+]
