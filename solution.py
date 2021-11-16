@@ -54,9 +54,9 @@ def construct_graph(flights):
     return flight_graph
 
 
-def find_all_paths(src, dst, flight_data, graph):
+def find_all_paths(src, dst, flight_data, graph, bags_num=0):
 
-    def _inner_find_all_paths(graph, inbound_flight, dst, current_path, flight_data, current_visited, index):
+    def _inner_find_all_paths(graph, inbound_flight, dst, current_path, flight_data, current_visited, index, bags_num):
 
         current_path.append((inbound_flight))
         current_visited.append(inbound_flight['destination'])
@@ -76,9 +76,9 @@ def find_all_paths(src, dst, flight_data, graph):
                 layover_OK = datetime.timedelta(
                     hours=1) < layover_time < datetime.timedelta(hours=6)
 
-                if new_flightpath['destination'] not in current_visited and layover_OK:
+                if new_flightpath['destination'] not in current_visited and layover_OK and new_flightpath['bags_allowed'] >= bags_num:
                     _inner_find_all_paths(
-                        graph, new_flightpath, dst, current_path, flight_data, current_visited, i)
+                        graph, new_flightpath, dst, current_path, flight_data, current_visited, i, bags_num)
 
         current_path.pop()
         current_visited.pop()
@@ -92,15 +92,16 @@ def find_all_paths(src, dst, flight_data, graph):
 
     for i, new_flightpath in enumerate(flight_data[src]):
         print(i)
-        _inner_find_all_paths(graph, new_flightpath, dst,
-                              current_path, flight_data, current_visited, i)
+        if new_flightpath['bags_allowed'] >= bags_num:
+            _inner_find_all_paths(
+                graph, new_flightpath, dst, current_path, flight_data, current_visited, i, bags_num)
 
     print(finished_paths)
     print(airport_fin)
     return finished_paths
 
 
-def convert_to_JSON(flight_paths):
+def convert_to_JSON(flight_paths, bag_num):
     json_export = []
 
     for flight_path in flight_paths:
@@ -113,18 +114,20 @@ def convert_to_JSON(flight_paths):
                        flight_path[0]['departure'])
 
         for flight in flight_path:
+
             current_flight = copy.deepcopy(flight)
             current_flight['departure'] = current_flight['departure'].isoformat()
             current_flight['arrival'] = current_flight['arrival'].isoformat()
 
             flights.append(current_flight)
-            total_price = total_price + current_flight["base_price"]
+            total_price = total_price + current_flight["base_price"] + current_flight["bag_price"]*bag_num
 
             bags_allowed = min(bags_allowed, current_flight["bags_allowed"])
 
         current_flight = {
             "flights": flights,
             "bags_allowed": bags_allowed,
+            "bags_count": bag_num,
             "destination": flight_path[-1]['destination'],
             'origin': flight_path[0]['origin'],
             'total_price': total_price,
@@ -142,7 +145,8 @@ if __name__ == '__main__':
     flight_data = read_flight_data('example/example3.csv')
     print(flight_data)
     flight_graph = construct_graph(flight_data)
+    bag_num = 2
+    possible_paths = find_all_paths(
+        'EZO', 'ZRW', flight_data, flight_graph, bag_num)
 
-    possible_paths = find_all_paths('EZO', 'ZRW', flight_data, flight_graph)
-
-    convert_to_JSON(possible_paths)
+    convert_to_JSON(possible_paths, bag_num)
