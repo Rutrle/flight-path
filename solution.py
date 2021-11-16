@@ -4,29 +4,32 @@ import json
 import copy
 
 
-def read_flight_data(dst):
+def read_flight_data(source):
+    '''
+    Reads csv file with flights data on 'source' path and returns them as dictionary
+    :param source: str path
+    '''
 
-    with open(dst, 'r') as flight_data_file:
+    with open(source, 'r') as flight_data_file:
         flights = {}
         reader = csv.DictReader(flight_data_file, delimiter=',')
 
         for row in reader:
-            flight = {}
-            flight['flight_no'] = row['flight_no']
-            flight['origin'] = row['origin']
-            flight['destination'] = row['destination']
-            flight['departure'] = datetime.datetime.fromisoformat(
-                row['departure'])
-            flight['arrival'] = datetime.datetime.fromisoformat(row['arrival'])
-            flight['base_price'] = float(row['base_price'])
-            flight['bag_price'] = float(row['bag_price'])
-            flight['bags_allowed'] = int(row['bags_allowed'])
+            flight = {
+                'flight_no': row['flight_no'],
+                'origin': row['origin'],
+                'destination': row['destination'],
+                'departure': datetime.datetime.fromisoformat(row['departure']),
+                'arrival': datetime.datetime.fromisoformat(row['arrival']),
+                'base_price': float(row['base_price']),
+                'bag_price': float(row['bag_price']),
+                'bags_allowed': int(row['bags_allowed'])
+            }
 
             flights.setdefault(flight['origin'], [])
-
             flights[flight['origin']].append(flight)
 
-        return (flights)
+        return flights
 
 
 def construct_graph(flights):
@@ -120,7 +123,9 @@ def convert_to_JSON(flight_paths, bag_num):
             current_flight['arrival'] = current_flight['arrival'].isoformat()
 
             flights.append(current_flight)
-            total_price = total_price + current_flight["base_price"] + current_flight["bag_price"]*bag_num
+            total_price = total_price + \
+                current_flight["base_price"] + \
+                current_flight["bag_price"]*bag_num
 
             bags_allowed = min(bags_allowed, current_flight["bags_allowed"])
 
