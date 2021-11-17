@@ -67,10 +67,10 @@ def find_all_paths(src, dst, flight_data, bags_num=0):
 
                 layover_time = (
                     new_flightpath['departure'] - inbound_flight['arrival'])
-                layover_OK = datetime.timedelta(
-                    hours=1) < layover_time < datetime.timedelta(hours=6)
+                layover_ok = datetime.timedelta(
+                    hours=1) <= layover_time <= datetime.timedelta(hours=6)
 
-                if new_flightpath['destination'] not in current_visited and layover_OK and new_flightpath['bags_allowed'] >= bags_num:
+                if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
                     _inner_find_all_paths(
                         new_flightpath, dst, current_path, flight_data, current_visited, i, bags_num)
 
@@ -96,7 +96,8 @@ def find_all_paths(src, dst, flight_data, bags_num=0):
 
 def convert_to_JSON(flight_paths, bag_num):
     '''
-    Converts 'flight_paths' to correct output format and then 
+    Converts 'flight_paths' to correct output format
+    and then prints and saves the ouput in json format
     :param flight_paths: list
     :param bag_num: int
 
@@ -152,11 +153,11 @@ def prepare_flight_path(flight_path, bag_num):
 
 
 if __name__ == '__main__':
-    flight_data = read_flight_data('example/example3.csv')
+    flight_data = read_flight_data('example/example1.csv')
     print(flight_data)
     flight_graph = construct_graph(flight_data)
-    bag_num = 2
+    bag_num = 0
     possible_paths = find_all_paths(
-        'EZO', 'ZRW', flight_data, bag_num)
+        'DHE', 'NIZ', flight_data, bag_num)
     print(possible_paths)
     convert_to_JSON(possible_paths, bag_num)

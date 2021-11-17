@@ -23,39 +23,11 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 294.0,
+        "total_price": 342.0,
         "travel_time": "12:25:00"
-    },
-    {
-        "flights": [
-            {
-                "flight_no": "IM567",
-                "origin": "NIZ",
-                "destination": "NRX",
-                "departure": "2021-09-01T11:15:00",
-                "arrival": "2021-09-01T14:25:00",
-                "base_price": 51.0,
-                "bag_price": 9.0,
-                "bags_allowed": 2
-            },
-            {
-                "flight_no": "WM395",
-                "origin": "NRX",
-                "destination": "SML",
-                "departure": "2021-09-01T17:40:00",
-                "arrival": "2021-09-01T20:00:00",
-                "base_price": 52.0,
-                "bag_price": 12.0,
-                "bags_allowed": 1
-            }
-        ],
-        "bags_allowed": 1,
-        "destination": "SML",
-        "origin": "NIZ",
-        "total_price": 103.0,
-        "travel_time": "8:45:00"
     },
     {
         "flights": [
@@ -71,9 +43,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 122.0,
+        "total_price": 146.0,
         "travel_time": "4:05:00"
     },
     {
@@ -90,9 +63,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 120.0,
+        "total_price": 138.0,
         "travel_time": "4:05:00"
     },
     {
@@ -109,9 +83,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 122.0,
+        "total_price": 146.0,
         "travel_time": "4:05:00"
     },
     {
@@ -128,9 +103,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 120.0,
+        "total_price": 138.0,
         "travel_time": "4:05:00"
     },
     {
@@ -147,9 +123,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 122.0,
+        "total_price": 146.0,
         "travel_time": "4:05:00"
     },
     {
@@ -166,9 +143,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 120.0,
+        "total_price": 138.0,
         "travel_time": "4:05:00"
     },
     {
@@ -185,9 +163,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 122.0,
+        "total_price": 146.0,
         "travel_time": "4:05:00"
     },
     {
@@ -204,9 +183,10 @@
             }
         ],
         "bags_allowed": 2,
+        "bags_count": 2,
         "destination": "SML",
         "origin": "NIZ",
-        "total_price": 120.0,
+        "total_price": 138.0,
         "travel_time": "4:05:00"
     }
 ]

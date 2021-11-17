@@ -1,0 +1,162 @@
+[
+    {
+        "flights": [
+            {
+                "flight_no": "WM608",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-01T19:45:00",
+                "arrival": "2021-09-01T21:15:00",
+                "base_price": 46.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 70.0,
+        "travel_time": "1:30:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM718",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-01T22:30:00",
+                "arrival": "2021-09-02T00:00:00",
+                "base_price": 23.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 41.0,
+        "travel_time": "1:30:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "WM608",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-03T19:45:00",
+                "arrival": "2021-09-03T21:15:00",
+                "base_price": 46.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 70.0,
+        "travel_time": "1:30:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM718",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-03T22:30:00",
+                "arrival": "2021-09-04T00:00:00",
+                "base_price": 23.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 41.0,
+        "travel_time": "1:30:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "WM608",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-07T19:45:00",
+                "arrival": "2021-09-07T21:15:00",
+                "base_price": 46.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 70.0,
+        "travel_time": "1:30:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM718",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-07T22:30:00",
+                "arrival": "2021-09-08T00:00:00",
+                "base_price": 23.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 41.0,
+        "travel_time": "1:30:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "WM608",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-13T19:45:00",
+                "arrival": "2021-09-13T21:15:00",
+                "base_price": 46.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 70.0,
+        "travel_time": "1:30:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "IM718",
+                "origin": "DHE",
+                "destination": "SML",
+                "departure": "2021-09-13T22:30:00",
+                "arrival": "2021-09-14T00:00:00",
+                "base_price": 23.0,
+                "bag_price": 9.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 2,
+        "destination": "SML",
+        "origin": "DHE",
+        "total_price": 41.0,
+        "travel_time": "1:30:00"
+    }
+]
