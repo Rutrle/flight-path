@@ -50,19 +50,15 @@ def construct_graph(flights):
 
 def find_all_paths(src, dst, flight_data, bags_num=0):
 
-    def _inner_find_all_paths(inbound_flight, dst, current_path, flight_data, current_visited, index, bags_num):
+    def _inner_find_all_paths(inbound_flight, dst, current_path, flight_data, current_visited, bags_num):
 
         current_path.append((inbound_flight))
         current_visited.append(inbound_flight['destination'])
-        airport_path.append([inbound_flight['destination'], index])
 
         if inbound_flight['destination'] == dst:
             finished_paths.append(tuple(current_path))
-            airport_fin.append(tuple(airport_path))
-            # print(current_path)
 
         else:
-            # for airport in graph[inbound_flight['destination']]:
             for i, new_flightpath in enumerate(flight_data[inbound_flight['destination']]):
 
                 layover_time = (
@@ -72,25 +68,21 @@ def find_all_paths(src, dst, flight_data, bags_num=0):
 
                 if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
                     _inner_find_all_paths(
-                        new_flightpath, dst, current_path, flight_data, current_visited, i, bags_num)
+                        new_flightpath, dst, current_path, flight_data, current_visited, bags_num)
 
         current_path.pop()
         current_visited.pop()
-        airport_path.pop()
 
     current_visited = [src]
     finished_paths = []
-    airport_path = []  # to be deleted
-    airport_fin = []  # to be deleted
 
     for i, new_flightpath in enumerate(flight_data[src]):
         print(i)
         if new_flightpath['bags_allowed'] >= bags_num:
             _inner_find_all_paths(new_flightpath, dst, [],
-                                  flight_data, current_visited, i, bags_num)
+                                  flight_data, current_visited, bags_num)
 
     print(finished_paths)
-    print(airport_fin)
     return finished_paths
 
 
@@ -155,7 +147,7 @@ def prepare_flight_path(flight_path, bag_num):
 if __name__ == '__main__':
     flight_data = read_flight_data('example/example1.csv')
     print(flight_data)
-    flight_graph = construct_graph(flight_data)
+    airport_graph = construct_graph(flight_data)
     bag_num = 0
     possible_paths = find_all_paths(
         'DHE', 'NIZ', flight_data, bag_num)
