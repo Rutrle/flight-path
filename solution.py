@@ -2,6 +2,7 @@ import csv
 import datetime
 import json
 import copy
+import argparse
 
 
 def read_flight_data(source):
@@ -59,7 +60,7 @@ def find_all_paths(src, dst, flight_data, bags_num=0):
             finished_paths.append(tuple(current_path))
 
         else:
-            for i, new_flightpath in enumerate(flight_data[inbound_flight['destination']]):
+            for new_flightpath in flight_data[inbound_flight['destination']]:
 
                 layover_time = (
                     new_flightpath['departure'] - inbound_flight['arrival'])
@@ -144,12 +145,18 @@ def prepare_flight_path(flight_path, bag_num):
     return prepared_path
 
 
+def input_control(parser):
+    pass
+
+
 if __name__ == '__main__':
+    args = input_control(argparse.ArgumentParser())
+
     flight_data = read_flight_data('example/example1.csv')
     print(flight_data)
     airport_graph = construct_graph(flight_data)
     bag_num = 0
     possible_paths = find_all_paths(
-        'DHE', 'NIZ', flight_data, bag_num)
+        'NIZ', 'DHE', flight_data, bag_num)
     print(possible_paths)
     convert_to_JSON(possible_paths, bag_num)
