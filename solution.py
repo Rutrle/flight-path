@@ -3,6 +3,8 @@ import datetime
 import json
 import copy
 import argparse
+import sys
+import tkinter
 
 
 def read_flight_data(source):
@@ -78,12 +80,11 @@ def find_all_paths(src, dst, flight_data, bags_num=0):
     finished_paths = []
 
     for i, new_flightpath in enumerate(flight_data[src]):
-        print(i)
         if new_flightpath['bags_allowed'] >= bags_num:
             _inner_find_all_paths(new_flightpath, dst, [],
                                   flight_data, current_visited, bags_num)
 
-    print(finished_paths)
+    # print(finished_paths)
     return finished_paths
 
 
@@ -101,7 +102,7 @@ def convert_to_JSON(flight_paths, bag_num):
         current_path = prepare_flight_path(flight_path, bag_num)
         json_export.append(current_path)
 
-    print(json.dumps(json_export, indent=4))
+    #print(json.dumps(json_export, indent=4))
 
     with open(f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json", mode='w') as write_file:
         json.dump(json_export, write_file, indent=4)
@@ -145,18 +146,50 @@ def prepare_flight_path(flight_path, bag_num):
     return prepared_path
 
 
-def input_control(parser):
-    pass
+def input_control():
+    arguments = {}
+
+    if len(sys.argv) > 1:
+        parser = argparse.ArgumentParser()
+        parser.add_argument('source', type=str,
+                            help='location of file with flight data')
+        parser.add_argument('-o', '--origin', type=str,
+                            required=True, help='origin of the flight')
+        parser.add_argument('-d', '--destination', type=str,
+                            required=True, help='destination of the flight')
+        parser.add_argument('--bags', type=str, required=False)
+
+        args = parser.parse_args()
+        print(args.bags)
+
+        arguments = {
+            'source': args.source,
+            'origin': args.origin,
+            'destination': args.destination,
+            'bag_number': 0
+        }
+        if args.bags != None:
+            arguments['bag_number'] = int(args.bags)
+    else:
+        print('here goes tkinter')
+        arguments = {
+            'source': 'example\\example1.csv',
+            'origin': 'NIZ',
+            'destination': 'DHE',
+            'bag_number': 0
+        }
+
+    return arguments
 
 
 if __name__ == '__main__':
-    args = input_control(argparse.ArgumentParser())
+    user_input = input_control()
 
-    flight_data = read_flight_data('example/example1.csv')
-    print(flight_data)
+    flight_data = read_flight_data(user_input['source'])
+    # print(flight_data)
     airport_graph = construct_graph(flight_data)
-    bag_num = 0
     possible_paths = find_all_paths(
-        'NIZ', 'DHE', flight_data, bag_num)
+        user_input['origin'], user_input['destination'], flight_data, user_input['bag_number'])
     print(possible_paths)
-    convert_to_JSON(possible_paths, bag_num)
+    convert_to_JSON(possible_paths, user_input['bag_number'])
+    print(user_input)
