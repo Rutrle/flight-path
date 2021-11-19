@@ -18,9 +18,11 @@ class FlightConnections:
         possible_paths = self.find_all_paths(
             user_input['origin'], user_input['destination'], flight_data, user_input['bag_number'])
         print(possible_paths)
-        # if len possible paths > 0
-        self.json_output = self.convert_to_JSON(
-            possible_paths, user_input['bag_number'])
+        if len(possible_paths) > 0:
+            self.flight_paths_output = self.convert_to_JSON(
+                possible_paths, user_input['bag_number'])
+        else:
+            self.flight_paths_output = None
 
     def read_flight_data(self, source):
         '''
