@@ -5,6 +5,7 @@ import copy
 import argparse
 import sys
 import tkinter
+from tkinter import ttk
 
 
 class FlightConnections:
@@ -179,20 +180,89 @@ def input_control():
             'source': args.source,
             'origin': args.origin,
             'destination': args.destination,
-            'bag_number': 0
+            'bag_number': 0,
+            'return_flag': False
         }
         if args.bags != None:
             arguments['bag_number'] = int(args.bags)
     else:
-        print('here goes tkinter')
-        arguments = {
-            'source': 'example\\example0.csv',
-            'origin': 'WIW',
-            'destination': 'ECV',
-            'bag_number': 50
-        }
+        user_input = GUIInput()
+        arguments = user_input.arguments
 
     return arguments
+
+
+class GUIInput:
+    def __init__(self):
+        self.root = tkinter.Tk()
+        self.root.title('Find flight connections')
+        self.populate(self.root)
+
+        self.root.mainloop()
+
+    def populate(self, root):
+        source_label = tkinter.Label(
+            root, text='Adress of flight dataset*', font=('calibre', 10, 'bold'))
+        source_entry = tkinter.Entry(root, font=(
+            'calibre', 10, 'normal'), borderwidth=3)
+
+        origin_label = tkinter.Label(
+            root, text='Origin*', font=('calibre', 10, 'bold'))
+        origin_entry = tkinter.Entry(root, font=(
+            'calibre', 10, 'normal'), borderwidth=3)
+
+        destination_label = tkinter.Label(
+            root, text='Destination*', font=('calibre', 10, 'bold'))
+        destination_entry = tkinter.Entry(
+            root, font=('calibre', 10, 'normal'), borderwidth=3)
+
+        sep = ttk.Separator(root, orient='horizontal')
+
+        bag_number_label = tkinter.Label(
+            root, text='Number of bags', font=('calibre', 10, 'bold'))
+        bag_number_entry = tkinter.Entry(
+            root, font=('calibre', 10, 'normal'), borderwidth=3)
+
+        return_flag = tkinter.IntVar()
+        return_ticket_label = tkinter.Label(
+            root, text='Return possible?', font=('calibre', 10, 'bold'))
+        return_ticket_check = tkinter.Checkbutton(root, variable=return_flag)
+
+        info_label = tkinter.Label(
+            root, text='required parameters marked with * ', font=('calibre', 7))
+        sub_btn = tkinter.Button(
+            root, text='Find!', command=lambda: self.get_input(source_entry.get(), origin_entry.get(), destination_entry.get(), bag_number_entry.get(), return_flag.get()))
+
+        source_label.grid(row=0, column=0, padx=10, pady=5)
+        source_entry.grid(row=0, column=1, padx=10, pady=5)
+        origin_label.grid(row=1, column=0, padx=10, pady=5)
+        origin_entry.grid(row=1, column=1, padx=10, pady=5)
+        destination_label.grid(row=2, column=0, padx=10, pady=5)
+        destination_entry.grid(row=2, column=1, padx=10, pady=5)
+        sep.grid(row=3, column=0, columnspan=3, padx=10, pady=10, ipadx=100)
+
+        bag_number_label.grid(row=4, column=0, padx=10, pady=5)
+        bag_number_entry.grid(row=4, column=1, padx=10, pady=5)
+        return_ticket_label.grid(row=5, column=0, padx=10, pady=5)
+        return_ticket_check.grid(row=5, column=1, padx=10, pady=5)
+
+        info_label.grid(row=6, column=0, pady=10)
+
+        sub_btn.grid(row=99, column=0, columnspan=2, padx=10, pady=10)
+
+    def get_input(self, source, origin, destination, bags_num, return_flag):
+        print(source, origin, destination, bags_num, return_flag)
+
+        if bags_num == '':
+            bags_num = 0
+        self.arguments = {
+            'source': source,
+            'origin': origin,
+            'destination': destination,
+            'bag_number': int(bags_num),
+            'return_flag': bool(return_flag)
+        }
+        self.root.destroy()
 
 
 if __name__ == '__main__':
