@@ -8,13 +8,19 @@ import tkinter
 
 
 class FlightConnections:
+    '''
+    Takes in 
+    '''
+
     def __init__(self, user_input):
         flight_data = self.read_flight_data(user_input['source'])
 
         possible_paths = self.find_all_paths(
             user_input['origin'], user_input['destination'], flight_data, user_input['bag_number'])
         print(possible_paths)
-        self.convert_to_JSON(possible_paths, user_input['bag_number'])
+        # if len possible paths > 0
+        self.json_output = self.convert_to_JSON(
+            possible_paths, user_input['bag_number'])
 
     def read_flight_data(self, source):
         '''
@@ -44,15 +50,29 @@ class FlightConnections:
 
             return flights
 
-    def find_all_paths(self, src, dst, flight_data, bags_num=0):
+    def find_all_paths(self, src, dst, flight_data, bags_num=0, return_ticket=True):
 
-        def _inner_find_all_paths(inbound_flight, dst, current_path, flight_data, current_visited, bags_num):
+        def _inner_find_all_paths(inbound_flight, dst, current_path, flight_data, current_visited, bags_num, return_flight):
 
             current_path.append((inbound_flight))
             current_visited.append(inbound_flight['destination'])
 
             if inbound_flight['destination'] == dst:
-                finished_paths.append(tuple(current_path))
+
+                if return_flight == False:
+                    finished_paths.append(tuple(current_path))
+                else:
+                    current_visited = [dst]
+                    print(dst, former_src)
+                    for new_flightpath in flight_data[dst]:
+                        layover_time = (
+                            new_flightpath['departure'] - inbound_flight['arrival'])
+                        layover_ok = datetime.timedelta(
+                            hours=1) <= layover_time <= datetime.timedelta(hours=120)
+
+                        if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
+                            _inner_find_all_paths(
+                                new_flightpath, former_src, current_path, flight_data, current_visited, bags_num, False)
 
             else:
                 for new_flightpath in flight_data[inbound_flight['destination']]:
@@ -64,20 +84,20 @@ class FlightConnections:
 
                     if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
                         _inner_find_all_paths(
-                            new_flightpath, dst, current_path, flight_data, current_visited, bags_num)
+                            new_flightpath, dst, current_path, flight_data, current_visited, bags_num, return_flight)
 
             current_path.pop()
             current_visited.pop()
 
         current_visited = [src]
         finished_paths = []
+        former_src = src
 
-        for i, new_flightpath in enumerate(flight_data[src]):
+        for new_flightpath in flight_data[src]:
             if new_flightpath['bags_allowed'] >= bags_num:
                 _inner_find_all_paths(new_flightpath, dst, [],
-                                      flight_data, current_visited, bags_num)
+                                      flight_data, current_visited, bags_num, return_ticket)
 
-        # print(finished_paths)
         return finished_paths
 
     def convert_to_JSON(self, flight_paths, bag_num):
@@ -94,10 +114,10 @@ class FlightConnections:
             current_path = self.prepare_flight_path(flight_path, bag_num)
             json_export.append(current_path)
 
-        #print(json.dumps(json_export, indent=4))
-
         with open(f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json", mode='w') as write_file:
             json.dump(json_export, write_file, indent=4)
+
+        return json.dumps(json_export, indent=4)
 
     def prepare_flight_path(self, flight_path, bag_num):
         '''
@@ -164,9 +184,9 @@ def input_control():
     else:
         print('here goes tkinter')
         arguments = {
-            'source': 'example\\example1.csv',
-            'origin': 'NIZ',
-            'destination': 'DHE',
+            'source': 'example\\example0.csv',
+            'origin': 'WIW',
+            'destination': 'ECV',
             'bag_number': 0
         }
 
@@ -176,4 +196,6 @@ def input_control():
 if __name__ == '__main__':
     user_input = input_control()
 
-    FlightConnections(user_input)
+    flight_conections = FlightConnections(user_input)
+
+    print(flight_conections.json_output)
