@@ -189,7 +189,7 @@ def input_control():
             'source': 'example\\example0.csv',
             'origin': 'WIW',
             'destination': 'ECV',
-            'bag_number': 0
+            'bag_number': 50
         }
 
     return arguments
@@ -200,4 +200,7 @@ if __name__ == '__main__':
 
     flight_conections = FlightConnections(user_input)
 
-    print(flight_conections.json_output)
+    if flight_conections.flight_paths_output != None:
+        print(flight_conections.flight_paths_output)
+    else:
+        print('Sorry, no flights satisfying your request were found.')
