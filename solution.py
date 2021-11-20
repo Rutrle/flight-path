@@ -4,8 +4,9 @@ import json
 import copy
 import argparse
 import sys
+import os
 import tkinter
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 
 class FlightConnections:
@@ -161,39 +162,6 @@ class FlightConnections:
         return prepared_path
 
 
-def input_control():
-    arguments = {}
-
-    if len(sys.argv) > 1:
-        parser = argparse.ArgumentParser()
-        parser.add_argument('source', type=str,
-                            help='location of file with flight data')
-        parser.add_argument('-o', '--origin', type=str,
-                            required=True, help='origin of the flight')
-        parser.add_argument('-d', '--destination', type=str,
-                            required=True, help='destination of the flight')
-        parser.add_argument('--bags', type=str, required=False)
-
-        args = parser.parse_args()
-        print(args.bags)
-
-        arguments = {
-            'source': args.source,
-            'origin': args.origin,
-            'destination': args.destination,
-            'bag_number': 0,
-            'return_flag': False
-        }
-
-        if args.bags != None:
-            arguments['bag_number'] = int(args.bags)
-    else:
-        user_input = GUIInput()
-        arguments = user_input.arguments
-
-    return arguments
-
-
 class GUIInput:
     def __init__(self):
         self.arguments = {}
@@ -209,7 +177,7 @@ class GUIInput:
         :param root: tkinter Tk object
         '''
         source_label = tkinter.Label(
-            root, text='Adress of flight dataset*', font=('calibre', 10, 'bold'))
+            root, text='Adress of flights dataset*', font=('calibre', 10, 'bold'))
         source_entry = tkinter.Entry(root, font=(
             'calibre', 10, 'normal'), borderwidth=3, width=30)
 
@@ -236,9 +204,9 @@ class GUIInput:
         return_ticket_check = tkinter.Checkbutton(root, variable=return_flag)
 
         info_label = tkinter.Label(
-            root, text='required parameters marked with * ', font=('calibre', 7))
+            root, text='* required parameters', font=('calibre', 7))
         sub_btn = tkinter.Button(
-            root, text='Find!', command=lambda: self.pass_input(source_entry.get(), origin_entry.get(), destination_entry.get(), bag_number_entry.get(), return_flag.get()))
+            root, text='Find flights!', command=lambda: self.pass_input(source_entry.get(), origin_entry.get(), destination_entry.get(), bag_number_entry.get(), return_flag.get()))
 
         source_label.grid(row=0, column=0, padx=10, pady=5)
         source_entry.grid(row=0, column=1, padx=10, pady=5)
@@ -278,6 +246,78 @@ class GUIInput:
             'return_flag': bool(return_flag)
         }
         self.root.destroy()
+
+
+def command_line_input():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('source', type=str,
+                        help='location of file with flights dataset')
+    parser.add_argument('-o', '--origin', type=str,
+                        required=True, help='origin of the flight')
+    parser.add_argument('-d', '--destination', type=str,
+                        required=True, help='destination of the flight')
+    parser.add_argument('--bags', type=str, required=False)
+
+    args = parser.parse_args()
+    print(args.bags)
+
+    arguments = {
+        'source': args.source,
+        'origin': args.origin,
+        'destination': args.destination,
+        'bag_number': 0,
+        'return_flag': False
+    }
+
+    if args.bags != None:
+        arguments['bag_number'] = int(args.bags)
+
+    return arguments
+
+
+def check_validity(user_input):
+
+    if user_input['source'] == '':
+        raise_error("Adress of flight dataset is required value")
+    if user_input['origin'] == '':
+        raise_error("Origin of flight is required value")
+    if user_input['destination'] == '':
+        raise_error("Destination  of flight is required value")
+
+    if len(user_input['origin']) != 3:
+        raise_error(
+            "Incorrect format of Origin of flight is required value")
+    if len(user_input['destination']) != 3:
+        raise_error("Destination  of flight is required value")
+
+    if not os.path.exists(user_input['source']):
+        raise_error(f"file address {user_input['source']} is not valid!")
+
+
+def raise_error(error_message):
+    '''
+    displays 'error_message' in message box, then raises exception
+    :param error_message: str
+    '''
+    root = tkinter.Tk()
+    root.withdraw()
+    messagebox.showerror('error', error_message)
+
+    raise Exception(error_message)
+
+
+def input_control():
+
+    if len(sys.argv) > 1:
+        user_input = command_line_input()
+
+    else:
+        gui_input = GUIInput()
+        user_input = gui_input.arguments
+
+    check_validity(user_input)
+
+    return user_input
 
 
 if __name__ == '__main__':
