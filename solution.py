@@ -55,7 +55,7 @@ class FlightConnections:
 
             return flights
 
-    def find_all_paths(self, src, dst, flight_data, bags_num=0, return_ticket=True):
+    def find_all_paths(self, src, dst, flight_data, bags_num=0, return_ticket=False):
 
         def _inner_find_all_paths(inbound_flight, dst, current_path, flight_data, current_visited, bags_num, return_flight):
 
@@ -121,6 +121,8 @@ class FlightConnections:
             current_path = self.prepare_flight_path(flight_path, bag_num)
             json_export.append(current_path)
 
+        json_export = sorted(json_export, key=lambda x: x['total_price'])
+
         with open(f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json", mode='w') as write_file:
             json.dump(json_export, write_file, indent=4)
 
@@ -165,6 +167,11 @@ class FlightConnections:
 
 
 class GUIInput:
+    '''
+    Creates tkinter window for filling info for finding
+    flight paths, saves them as 'arguments' attribute
+    '''
+
     def __init__(self):
         self.arguments = {}
         self.root = tkinter.Tk()
@@ -277,17 +284,24 @@ def command_line_input():
     return arguments
 
 
-def check_validity_src_dst(src, dst, flight_data):
+def check_validity_src_dst(origin, destination, flight_data):
+    '''
+    checks that airport codes 'origin' and 'destination' are
+    valid keys in flight_data, if not calls 'raise_error'
+    :param origin: str
+    :param destination: str
+    :param flight_data: dictionary
+    '''
 
     valid_airports = ', '.join(flight_data.keys())
 
-    if src not in flight_data:
+    if origin not in flight_data:
         raise_error(
-            f"Wrong input, no airport named '{src}' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}")
+            f"Wrong input, no airport named '{origin}' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}")
 
-    if dst not in flight_data:
+    if destination not in flight_data:
         raise_error(
-            f"Wrong input, no airport named '{dst}' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}")
+            f"Wrong input, no airport named '{destination}' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}")
 
 
 def check_validity(user_input):
