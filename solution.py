@@ -56,6 +56,16 @@ class FlightConnections:
             return flights
 
     def find_all_paths(self, src, dst, flight_data, bags_num=0, return_ticket=False):
+        '''
+        Uses backtracking to find all avaiable paths in 'flight_data' between starting airport 'src'
+        and destination 'dst', in conformity with number of bags 'bags_num'
+        :param src: string
+        :param dst: string
+        :param flight_data: dict
+        :param bags_num: int
+        :param return_ticket: boolean
+        :returns: list of tuples
+        '''
 
         def _inner_find_all_paths(inbound_flight, dst, current_path, flight_data, current_visited, bags_num, return_flight):
 
