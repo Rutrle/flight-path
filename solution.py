@@ -19,7 +19,7 @@ class FlightConnections:
         flight_data = self.read_flight_data(user_input['source'])
 
         possible_paths = self.find_all_paths(
-            user_input['origin'], user_input['destination'], flight_data, user_input['bag_number'])
+            user_input['origin'], user_input['destination'], flight_data, user_input['bag_number'], user_input['return_flag'])
         print(possible_paths)
         if len(possible_paths) > 0:
             self.flight_paths_output = self.convert_to_JSON(
@@ -82,15 +82,10 @@ class FlightConnections:
 
             else:
                 for new_flightpath in flight_data[inbound_flight['destination']]:
+                    flightpath_ok = self.flightpath_valid(
+                        new_flightpath['destination'], current_visited, inbound_flight['arrival'], new_flightpath['departure'], bags_num, new_flightpath['bags_allowed'])
 
-                    layover_time = (
-                        new_flightpath['departure'] - inbound_flight['arrival'])
-                    layover_ok = datetime.timedelta(
-                        hours=1) <= layover_time <= datetime.timedelta(hours=6)
-
-                    if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
-                        if not self.flightpath_valid(new_flightpath['destination'], current_visited, inbound_flight['arrival'], new_flightpath['departure'], bags_num, new_flightpath['bags_allowed']):
-                            raise Exception('we have a problem')
+                    if flightpath_ok:
                         _inner_find_all_paths(
                             new_flightpath, dst, current_path, flight_data, current_visited, bags_num, return_flight)
 
