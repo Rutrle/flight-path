@@ -140,7 +140,13 @@ class FlightConnections:
 
         json_export = sorted(json_export, key=lambda x: x['total_price'])
 
-        with open(f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json", mode='w') as write_file:
+        if not os.path.exists('results'):
+            os.mkdir('results')
+
+        result_address = os.path.join('results',
+                                      f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json")
+
+        with open(result_address, mode='w') as write_file:
             json.dump(json_export, write_file, indent=4)
 
         return json.dumps(json_export, indent=4)
@@ -241,12 +247,10 @@ class GUIInput:
         destination_label.grid(row=2, column=0, padx=10, pady=5)
         destination_entry.grid(row=2, column=1, padx=10, pady=5)
         sep.grid(row=3, column=0, columnspan=3, padx=10, pady=10, ipadx=100)
-
         bag_number_label.grid(row=4, column=0, padx=10, pady=5)
         bag_number_entry.grid(row=4, column=1, padx=10, pady=5)
         return_ticket_label.grid(row=5, column=0, padx=10, pady=5)
         return_ticket_check.grid(row=5, column=1, padx=10, pady=5)
-
         info_label.grid(row=6, column=0, pady=10)
 
         sub_btn.grid(row=99, column=0, columnspan=2, padx=10, pady=10)
@@ -271,10 +275,15 @@ class GUIInput:
             'bag_number': int(bags_num),
             'return_flag': bool(return_flag)
         }
+
         self.root.destroy()
 
 
 def command_line_input():
+    '''
+    Takes in user input from command line
+    :returns: dictionary
+    '''
     parser = argparse.ArgumentParser()
     parser.add_argument('source', type=str,
                         help='location of file with flights dataset')
@@ -282,21 +291,26 @@ def command_line_input():
                         required=True, help='origin of the flight')
     parser.add_argument('-d', '--destination', type=str,
                         required=True, help='destination of the flight')
-    parser.add_argument('--bags', type=str, required=False)
+    parser.add_argument('-b', '--bags', type=int, required=False)
+    parser.add_argument('-r', '--return_ticket',
+                        action='store_true', required=False)
 
     args = parser.parse_args()
-    print(args.bags)
 
     arguments = {
         'source': args.source,
         'origin': args.origin,
         'destination': args.destination,
         'bag_number': 0,
-        'return_flag': False
+        'return_flag': args.return_ticket
     }
 
     if args.bags != None:
         arguments['bag_number'] = int(args.bags)
+    if args.return_ticket != None:
+        pass
+
+    print(arguments)
 
     return arguments
 
@@ -326,7 +340,6 @@ def check_validity(user_input):
     checks validity of 'user_input'
     :param user_input:  dict
     '''
-
     if user_input['source'] == user_input['origin'] == user_input['destination'] == '':
         # need for messagebox with raise_error when no input  was provided
         raise Exception('No input')
