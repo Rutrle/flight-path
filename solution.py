@@ -94,6 +94,8 @@ class FlightConnections:
             current_path.pop()
             current_visited.pop()
 
+        check_validity_src_dst(src, dst, flight_data)
+
         current_visited = [src]
         finished_paths = []
         former_src = src
@@ -275,23 +277,38 @@ def command_line_input():
     return arguments
 
 
+def check_validity_src_dst(src, dst, flight_data):
+
+    valid_airports = ', '.join(flight_data.keys())
+
+    if src not in flight_data:
+        raise_error(
+            f"Wrong input, no airport named '{src}' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}")
+
+    if dst not in flight_data:
+        raise_error(
+            f"Wrong input, no airport named '{dst}' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}")
+
+
 def check_validity(user_input):
+    '''
+    checks validity of 'user_input'
+    :param user_input:  dict
+    '''
+
+    if user_input['source'] == user_input['origin'] == user_input['destination'] == '':
+        # need for messagebox with raise_error when no input  was provided
+        raise Exception('No input')
 
     if user_input['source'] == '':
-        raise_error("Adress of flight dataset is required value")
+        raise_error("Adress of flight dataset is a required value")
     if user_input['origin'] == '':
-        raise_error("Origin of flight is required value")
+        raise_error("Origin of flight is a required value")
     if user_input['destination'] == '':
-        raise_error("Destination  of flight is required value")
-
-    if len(user_input['origin']) != 3:
-        raise_error(
-            "Incorrect format of Origin of flight is required value")
-    if len(user_input['destination']) != 3:
-        raise_error("Destination  of flight is required value")
+        raise_error("Destination  of flight is a required value")
 
     if not os.path.exists(user_input['source']):
-        raise_error(f"file address {user_input['source']} is not valid!")
+        raise_error(f"file address '{user_input['source']}' is not valid!")
 
 
 def raise_error(error_message):
@@ -307,6 +324,11 @@ def raise_error(error_message):
 
 
 def input_control():
+    '''
+    switches between command line and GUI user input depending on with
+    how many arguments the script was started and returns it afterwards
+    :returns: dict
+    '''
 
     if len(sys.argv) > 1:
         user_input = command_line_input()
@@ -315,13 +337,12 @@ def input_control():
         gui_input = GUIInput()
         user_input = gui_input.arguments
 
-    check_validity(user_input)
-
     return user_input
 
 
 if __name__ == '__main__':
     user_input = input_control()
+    check_validity(user_input)
 
     flight_conections = FlightConnections(user_input)
 
