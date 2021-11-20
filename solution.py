@@ -70,20 +70,17 @@ class FlightConnections:
                     current_visited = [dst]
                     print(dst, former_src)
                     for new_flightpath in flight_data[dst]:
-                        layover_time = (
-                            new_flightpath['departure'] - inbound_flight['arrival'])
-                        layover_ok = datetime.timedelta(
-                            hours=1) <= layover_time <= datetime.timedelta(hours=120)
+                        flightpath_ok = self.flightpath_valid(
+                            new_flightpath, current_visited, inbound_flight['arrival'], bags_num, 1, 120)
 
-                        if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
-
+                        if flightpath_ok:
                             _inner_find_all_paths(
                                 new_flightpath, former_src, current_path, flight_data, current_visited, bags_num, False)
 
             else:
                 for new_flightpath in flight_data[inbound_flight['destination']]:
                     flightpath_ok = self.flightpath_valid(
-                        new_flightpath['destination'], current_visited, inbound_flight['arrival'], new_flightpath['departure'], bags_num, new_flightpath['bags_allowed'])
+                        new_flightpath, current_visited, inbound_flight['arrival'], bags_num)
 
                     if flightpath_ok:
                         _inner_find_all_paths(
@@ -105,13 +102,23 @@ class FlightConnections:
 
         return finished_paths
 
-    def flightpath_valid(self, flight_destination, visited, previous_arrival, departure, bags_number, bags_allowed, layover_min=1, layover_max=6):
-        layover_time = (departure - previous_arrival)
+    def flightpath_valid(self, flight, visited, previous_arrival, bags_num, layover_min=1, layover_max=6):
+        '''
+        checks validity of given 'flight' 
+        :param flight: dictionary
+        :param visited: list
+        :param previous_arrival: datetime obj
+        :param bags_num: int
+        :param layover_min: int
+        :param layover_max: int
+        :returns: boolean
+        '''
+        layover_time = (flight['departure'] - previous_arrival)
         layover_ok = datetime.timedelta(
             hours=layover_min) <= layover_time <= datetime.timedelta(hours=layover_max)
 
-        bags_ok = bags_allowed >= bags_number
-        airport_ok = flight_destination not in visited
+        bags_ok = flight['bags_allowed'] >= bags_num
+        airport_ok = flight['destination'] not in visited
 
         flight_valid = layover_ok and airport_ok and bags_ok
 
