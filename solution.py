@@ -76,6 +76,7 @@ class FlightConnections:
                             hours=1) <= layover_time <= datetime.timedelta(hours=120)
 
                         if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
+
                             _inner_find_all_paths(
                                 new_flightpath, former_src, current_path, flight_data, current_visited, bags_num, False)
 
@@ -88,6 +89,8 @@ class FlightConnections:
                         hours=1) <= layover_time <= datetime.timedelta(hours=6)
 
                     if new_flightpath['destination'] not in current_visited and layover_ok and new_flightpath['bags_allowed'] >= bags_num:
+                        if not self.flightpath_valid(new_flightpath['destination'], current_visited, inbound_flight['arrival'], new_flightpath['departure'], bags_num, new_flightpath['bags_allowed']):
+                            raise Exception('we have a problem')
                         _inner_find_all_paths(
                             new_flightpath, dst, current_path, flight_data, current_visited, bags_num, return_flight)
 
@@ -106,6 +109,18 @@ class FlightConnections:
                                       flight_data, current_visited, bags_num, return_ticket)
 
         return finished_paths
+
+    def flightpath_valid(self, flight_destination, visited, previous_arrival, departure, bags_number, bags_allowed, layover_min=1, layover_max=6):
+        layover_time = (departure - previous_arrival)
+        layover_ok = datetime.timedelta(
+            hours=layover_min) <= layover_time <= datetime.timedelta(hours=layover_max)
+
+        bags_ok = bags_allowed >= bags_number
+        airport_ok = flight_destination not in visited
+
+        flight_valid = layover_ok and airport_ok and bags_ok
+
+        return flight_valid
 
     def convert_to_JSON(self, flight_paths, bag_num):
         '''
