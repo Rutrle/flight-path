@@ -10,7 +10,8 @@ from tkinter import ttk
 
 class FlightConnections:
     '''
-    Takes in 
+    Takes in 'user_input'
+    :param user_input: dictionary
     '''
 
     def __init__(self, user_input):
@@ -183,6 +184,7 @@ def input_control():
             'bag_number': 0,
             'return_flag': False
         }
+
         if args.bags != None:
             arguments['bag_number'] = int(args.bags)
     else:
@@ -194,6 +196,7 @@ def input_control():
 
 class GUIInput:
     def __init__(self):
+        self.arguments = {}
         self.root = tkinter.Tk()
         self.root.title('Find flight connections')
         self.populate(self.root)
@@ -201,10 +204,14 @@ class GUIInput:
         self.root.mainloop()
 
     def populate(self, root):
+        '''
+        fills in the 'root' with widgets
+        :param root: tkinter Tk object
+        '''
         source_label = tkinter.Label(
             root, text='Adress of flight dataset*', font=('calibre', 10, 'bold'))
         source_entry = tkinter.Entry(root, font=(
-            'calibre', 10, 'normal'), borderwidth=3)
+            'calibre', 10, 'normal'), borderwidth=3, width=30)
 
         origin_label = tkinter.Label(
             root, text='Origin*', font=('calibre', 10, 'bold'))
@@ -221,7 +228,7 @@ class GUIInput:
         bag_number_label = tkinter.Label(
             root, text='Number of bags', font=('calibre', 10, 'bold'))
         bag_number_entry = tkinter.Entry(
-            root, font=('calibre', 10, 'normal'), borderwidth=3)
+            root, font=('calibre', 10, 'normal'), borderwidth=3, width=10)
 
         return_flag = tkinter.IntVar()
         return_ticket_label = tkinter.Label(
@@ -231,7 +238,7 @@ class GUIInput:
         info_label = tkinter.Label(
             root, text='required parameters marked with * ', font=('calibre', 7))
         sub_btn = tkinter.Button(
-            root, text='Find!', command=lambda: self.get_input(source_entry.get(), origin_entry.get(), destination_entry.get(), bag_number_entry.get(), return_flag.get()))
+            root, text='Find!', command=lambda: self.pass_input(source_entry.get(), origin_entry.get(), destination_entry.get(), bag_number_entry.get(), return_flag.get()))
 
         source_label.grid(row=0, column=0, padx=10, pady=5)
         source_entry.grid(row=0, column=1, padx=10, pady=5)
@@ -250,8 +257,16 @@ class GUIInput:
 
         sub_btn.grid(row=99, column=0, columnspan=2, padx=10, pady=10)
 
-    def get_input(self, source, origin, destination, bags_num, return_flag):
-        print(source, origin, destination, bags_num, return_flag)
+    def pass_input(self, source, origin, destination, bags_num, return_flag):
+        '''
+        passes data from tkinter window ('source', 'origin', 'destination', 'bags_num' and 'return_flag')
+        into 'arguments' attribute and closes tkinter window afterwards
+        :param source: str
+        :param origin: str
+        :param destination: str
+        :param bags_num: str(int)
+        :param return_flag: 0 or 1
+        '''
 
         if bags_num == '':
             bags_num = 0
@@ -274,3 +289,5 @@ if __name__ == '__main__':
         print(flight_conections.flight_paths_output)
     else:
         print('Sorry, no flights satisfying your request were found.')
+
+    input('Press ENTER to exit')
