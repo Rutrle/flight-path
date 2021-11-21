@@ -23,7 +23,7 @@ class FlightConnections:
 
         if len(possible_paths) > 0:
             self.flight_paths_output = self.convert_to_JSON(
-                possible_paths, user_input['bag_number'])
+                possible_paths, user_input)
         else:
             self.flight_paths_output = None
 
@@ -136,7 +136,7 @@ class FlightConnections:
 
         return flight_valid
 
-    def convert_to_JSON(self, flight_paths, bag_num):
+    def convert_to_JSON(self, flight_paths, user_input):
         '''
         Converts 'flight_paths' to correct output format
         and then prints and saves the ouput in json format
@@ -147,7 +147,8 @@ class FlightConnections:
         json_export = []
 
         for flight_path in flight_paths:
-            current_path = self.prepare_flight_path(flight_path, bag_num)
+            current_path = self.prepare_flight_path(
+                flight_path, user_input['bag_number'])
             json_export.append(current_path)
 
         json_export = sorted(json_export, key=lambda x: x['total_price'])
@@ -158,8 +159,9 @@ class FlightConnections:
         result_address = os.path.join('results',
                                       f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json")
 
-        with open(result_address, mode='w') as write_file:
-            json.dump(json_export, write_file, indent=4)
+        if user_input['save_flag']:
+            with open(result_address, mode='w') as write_file:
+                json.dump(json_export, write_file, indent=4)
 
         return json.dumps(json_export, indent=4)
 
@@ -247,10 +249,15 @@ class GUIInput:
             root, text='Return possible?', font=('calibre', 10, 'bold'))
         return_ticket_check = tkinter.Checkbutton(root, variable=return_flag)
 
+        save_flag = tkinter.IntVar()
+        save_flag_label = tkinter.Label(
+            root, text='Save results', font=('calibre', 10, 'bold'))
+        save_flag_check = tkinter.Checkbutton(root, variable=save_flag)
+
         info_label = tkinter.Label(
             root, text='* required parameters', font=('calibre', 7))
         sub_btn = tkinter.Button(
-            root, text='Find flights!', command=lambda: self.pass_input(source_entry.get(), origin_entry.get(), destination_entry.get(), bag_number_entry.get(), return_flag.get()))
+            root, text='Find flights!', command=lambda: self.pass_input(source_entry.get(), origin_entry.get(), destination_entry.get(), bag_number_entry.get(), return_flag.get(), save_flag.get()))
 
         source_label.grid(row=0, column=0, padx=10, pady=5)
         source_entry.grid(row=0, column=1, padx=10, pady=5)
@@ -263,11 +270,13 @@ class GUIInput:
         bag_number_entry.grid(row=4, column=1, padx=10, pady=5)
         return_ticket_label.grid(row=5, column=0, padx=10, pady=5)
         return_ticket_check.grid(row=5, column=1, padx=10, pady=5)
-        info_label.grid(row=6, column=0, pady=10)
+        save_flag_label.grid(row=6, column=0, padx=10, pady=5)
+        save_flag_check.grid(row=6, column=1, padx=10, pady=5)
+        info_label.grid(row=7, column=0, pady=10)
 
         sub_btn.grid(row=99, column=0, columnspan=2, padx=10, pady=10)
 
-    def pass_input(self, source, origin, destination, bags_num, return_flag):
+    def pass_input(self, source, origin, destination, bags_num, return_flag, save_flag):
         '''
         passes data from tkinter window ('source', 'origin', 'destination', 'bags_num' and 'return_flag')
         into 'arguments' attribute and closes tkinter window afterwards
@@ -276,16 +285,19 @@ class GUIInput:
         :param destination: str
         :param bags_num: str(int)
         :param return_flag: 0 or 1
+        :param save_flag: 0 or 1
         '''
 
         if bags_num == '':
             bags_num = 0
+
         self.arguments = {
             'source': source,
             'origin': origin,
             'destination': destination,
             'bag_number': int(bags_num),
-            'return_flag': bool(return_flag)
+            'return_flag': bool(return_flag),
+            'save_flag': bool(save_flag)
         }
 
         self.root.destroy()
@@ -307,6 +319,8 @@ def command_line_input():
     parser.add_argument('-r', '--return_ticket',
                         action='store_true', required=False)
 
+    parser.add_argument('-s', '--save',
+                        action='store_true', required=False)
     args = parser.parse_args()
 
     arguments = {
@@ -314,13 +328,12 @@ def command_line_input():
         'origin': args.origin,
         'destination': args.destination,
         'bag_number': 0,
-        'return_flag': args.return_ticket
+        'return_flag': args.return_ticket,
+        'save_flag': args.save
     }
 
     if args.bags != None:
         arguments['bag_number'] = int(args.bags)
-    if args.return_ticket != None:
-        pass
 
     print(arguments)
 
