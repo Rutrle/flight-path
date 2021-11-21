@@ -1,0 +1,422 @@
+[
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-01T17:40:00",
+                "arrival": "2021-09-01T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-02T12:10:00",
+                "arrival": "2021-09-02T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-01T17:40:00",
+                "arrival": "2021-09-01T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-05T12:10:00",
+                "arrival": "2021-09-05T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "3 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-01T17:40:00",
+                "arrival": "2021-09-01T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-09T12:10:00",
+                "arrival": "2021-09-09T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "7 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-01T17:40:00",
+                "arrival": "2021-09-01T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-15T12:10:00",
+                "arrival": "2021-09-15T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "13 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-02T17:40:00",
+                "arrival": "2021-09-02T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-05T12:10:00",
+                "arrival": "2021-09-05T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "2 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-02T17:40:00",
+                "arrival": "2021-09-02T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-09T12:10:00",
+                "arrival": "2021-09-09T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "6 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-02T17:40:00",
+                "arrival": "2021-09-02T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-15T12:10:00",
+                "arrival": "2021-09-15T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "12 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-05T17:40:00",
+                "arrival": "2021-09-05T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-09T12:10:00",
+                "arrival": "2021-09-09T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "3 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-05T17:40:00",
+                "arrival": "2021-09-05T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-15T12:10:00",
+                "arrival": "2021-09-15T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "9 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-09T17:40:00",
+                "arrival": "2021-09-09T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-15T12:10:00",
+                "arrival": "2021-09-15T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 116.0,
+        "travel_time": "5 days, 21:00:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH665",
+                "origin": "RFZ",
+                "destination": "ECV",
+                "departure": "2021-09-01T17:40:00",
+                "arrival": "2021-09-01T20:10:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH151",
+                "origin": "ECV",
+                "destination": "WIW",
+                "departure": "2021-09-02T15:35:00",
+                "arrival": "2021-09-02T20:45:00",
+                "base_price": 245.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH214",
+                "origin": "WIW",
+                "destination": "RFZ",
+                "departure": "2021-09-02T23:20:00",
+                "arrival": "2021-09-03T03:50:00",
+                "base_price": 168.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 471.0,
+        "travel_time": "1 day, 10:10:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH214",
+                "origin": "RFZ",
+                "destination": "WIW",
+                "departure": "2021-09-05T05:50:00",
+                "arrival": "2021-09-05T10:20:00",
+                "base_price": 168.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH151",
+                "origin": "WIW",
+                "destination": "ECV",
+                "departure": "2021-09-05T12:25:00",
+                "arrival": "2021-09-05T15:35:00",
+                "base_price": 245.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-09T12:10:00",
+                "arrival": "2021-09-09T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 471.0,
+        "travel_time": "4 days, 8:50:00"
+    },
+    {
+        "flights": [
+            {
+                "flight_no": "ZH214",
+                "origin": "RFZ",
+                "destination": "WIW",
+                "departure": "2021-09-05T05:50:00",
+                "arrival": "2021-09-05T10:20:00",
+                "base_price": 168.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH151",
+                "origin": "WIW",
+                "destination": "ECV",
+                "departure": "2021-09-05T12:25:00",
+                "arrival": "2021-09-05T15:35:00",
+                "base_price": 245.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            },
+            {
+                "flight_no": "ZH665",
+                "origin": "ECV",
+                "destination": "RFZ",
+                "departure": "2021-09-15T12:10:00",
+                "arrival": "2021-09-15T14:40:00",
+                "base_price": 58.0,
+                "bag_price": 12.0,
+                "bags_allowed": 2
+            }
+        ],
+        "bags_allowed": 2,
+        "bags_count": 0,
+        "destination": "RFZ",
+        "origin": "RFZ",
+        "total_price": 471.0,
+        "travel_time": "10 days, 8:50:00"
+    }
+]

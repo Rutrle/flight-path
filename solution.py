@@ -20,7 +20,7 @@ class FlightConnections:
 
         possible_paths = self.find_all_paths(
             user_input['origin'], user_input['destination'], flight_data, user_input['bag_number'], user_input['return_flag'])
-        print(possible_paths)
+
         if len(possible_paths) > 0:
             self.flight_paths_output = self.convert_to_JSON(
                 possible_paths, user_input['bag_number'])
@@ -74,18 +74,20 @@ class FlightConnections:
 
             if inbound_flight['destination'] == dst:
 
+                print(current_visited)
+                print(current_path)
                 if return_flight == False:
                     finished_paths.append(tuple(current_path))
                 else:
-                    current_visited = [dst]
-                    print(dst, former_src)
+                    new_visited = [dst]
+
                     for new_flightpath in flight_data[dst]:
                         flightpath_ok = self.flightpath_valid(
-                            new_flightpath, current_visited, inbound_flight['arrival'], bags_num, 1, 120)
+                            new_flightpath, new_visited, inbound_flight['arrival'], bags_num, 1, 504)
 
                         if flightpath_ok:
                             _inner_find_all_paths(
-                                new_flightpath, former_src, current_path, flight_data, current_visited, bags_num, False)
+                                new_flightpath, former_src, current_path, flight_data, new_visited, bags_num, False)
 
             else:
                 for new_flightpath in flight_data[inbound_flight['destination']]:
