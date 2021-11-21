@@ -74,8 +74,6 @@ class FlightConnections:
 
             if inbound_flight['destination'] == dst:
 
-                print(current_visited)
-                print(current_path)
                 if return_flight == False:
                     finished_paths.append(tuple(current_path))
                 else:
@@ -101,7 +99,7 @@ class FlightConnections:
             current_path.pop()
             current_visited.pop()
 
-        check_validity_src_dst(src, dst, flight_data)
+        self.check_validity_src_dst(src, dst, flight_data)
 
         current_visited = [src]
         finished_paths = []
@@ -136,13 +134,32 @@ class FlightConnections:
 
         return flight_valid
 
+    def check_validity_src_dst(self, origin, destination, flight_data):
+        '''
+        checks that airport codes 'origin' and 'destination' are
+        valid keys in flight_data, if not calls 'raise_error'
+        :param origin: str
+        :param destination: str
+        :param flight_data: dictionary
+        '''
+
+        valid_airports = ', '.join(flight_data.keys())
+
+        if origin not in flight_data:
+            raise_error(
+                f"Wrong input, no airport named '{origin}' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}")
+
+        if destination not in flight_data:
+            raise_error(
+                f"Wrong input, no airport named '{destination}' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}")
+
     def convert_to_JSON(self, flight_paths, user_input):
         '''
         Converts 'flight_paths' to correct output format
-        and then prints and saves the ouput in json format
+        and then returns and saves the ouput in json format
         :param flight_paths: list
         :param bag_num: int
-
+        :returns: json list
         '''
         json_export = []
 
@@ -335,29 +352,7 @@ def command_line_input():
     if args.bags != None:
         arguments['bag_number'] = int(args.bags)
 
-    print(arguments)
-
     return arguments
-
-
-def check_validity_src_dst(origin, destination, flight_data):
-    '''
-    checks that airport codes 'origin' and 'destination' are
-    valid keys in flight_data, if not calls 'raise_error'
-    :param origin: str
-    :param destination: str
-    :param flight_data: dictionary
-    '''
-
-    valid_airports = ', '.join(flight_data.keys())
-
-    if origin not in flight_data:
-        raise_error(
-            f"Wrong input, no airport named '{origin}' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}")
-
-    if destination not in flight_data:
-        raise_error(
-            f"Wrong input, no airport named '{destination}' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}")
 
 
 def check_validity(user_input):
