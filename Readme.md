@@ -5,18 +5,15 @@ needs to be done:
  - check that both inputs are the same
 
 README
-##
-
+## What it does
+This script (solution.py) finds all possible paths between chosen origin and destination airport, according to supplied .csv flights data and user input and prints the results in JSON format. Optionally, user can choose number of bags he wants to travel with, if he want also all possible return flights to be found as well and also if the results should be saved in .JSON file. There are two possibilities how to run it, either through GUI or through supplying arguments directly through command line.
 
 ## Install
 no installation is needed, project uses only standard library of Python 3.7
 
-## What it does
-
-
 ## How to use it
 There are two ways how to run this script:
-    1) run it in sommand line without any arguments or start the python
+    1) run it in command line without any arguments or start the python
      file directly => GUI will open for you to fill in arguments
     2) run it in command line with arguments 
 
