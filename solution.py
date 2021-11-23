@@ -1,13 +1,12 @@
 import csv
 import datetime
 import json
-import copy
 import argparse
 import sys
 import os
 import tkinter
 from tkinter import ttk, messagebox
-
+from copy import deepcopy
 
 class FlightConnections:
     '''
@@ -147,11 +146,11 @@ class FlightConnections:
 
         if origin not in flight_data:
             raise_error(
-                f"Wrong input, no airport named '{origin}' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}")
+                f'Wrong input, no airport named \'{origin}\' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}')
 
         if destination not in flight_data:
             raise_error(
-                f"Wrong input, no airport named '{destination}' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}")
+                f'Wrong input, no airport named \'{destination}\' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}')
 
     def convert_to_JSON(self, flight_paths, user_input):
         '''
@@ -173,8 +172,13 @@ class FlightConnections:
         if not os.path.exists('results'):
             os.mkdir('results')
 
-        result_address = os.path.join('results',
-                                      f"{json_export[0]['origin']}-{json_export[0]['destination']}_flight_paths.json")
+        if user_input['return_flag']:
+            file_name = f"{user_input['origin']}-{user_input['destination']}-{user_input['origin']}_flight_paths.json"
+
+        else:
+            file_name = f"{user_input['origin']}-{user_input['destination']}_flight_paths.json"
+
+        result_address = os.path.join('results',file_name)
 
         if user_input['save_flag']:
             with open(result_address, mode='w') as write_file:
@@ -197,21 +201,21 @@ class FlightConnections:
 
         for flight in flight_path:
 
-            current_flight = copy.deepcopy(flight)
+            current_flight = deepcopy(flight)
             current_flight['departure'] = current_flight['departure'].isoformat()
             current_flight['arrival'] = current_flight['arrival'].isoformat()
 
             flights.append(current_flight)
-            total_price += current_flight["base_price"] + \
-                current_flight["bag_price"]*bag_num
+            total_price += current_flight['base_price'] + \
+                current_flight['bag_price']*bag_num
 
-            bags_allowed = min(bags_allowed, current_flight["bags_allowed"])
+            bags_allowed = min(bags_allowed, current_flight['bags_allowed'])
 
         prepared_path = {
-            "flights": flights,
-            "bags_allowed": bags_allowed,
-            "bags_count": bag_num,
-            "destination": flight_path[-1]['destination'],
+            'flights': flights,
+            'bags_allowed': bags_allowed,
+            'bags_count': bag_num,
+            'destination': flight_path[-1]['destination'],
             'origin': flight_path[0]['origin'],
             'total_price': total_price,
             'travel_time': str(travel_time)
@@ -245,12 +249,12 @@ class GUIInput:
             'calibre', 10, 'normal'), borderwidth=3, width=30)
 
         origin_label = tkinter.Label(
-            root, text='Origin*', font=('calibre', 10, 'bold'))
+            root, text='Origin airport code*', font=('calibre', 10, 'bold'))
         origin_entry = tkinter.Entry(root, font=(
             'calibre', 10, 'normal'), borderwidth=3)
 
         destination_label = tkinter.Label(
-            root, text='Destination*', font=('calibre', 10, 'bold'))
+            root, text='Destination airport code*', font=('calibre', 10, 'bold'))
         destination_entry = tkinter.Entry(
             root, font=('calibre', 10, 'normal'), borderwidth=3)
 
@@ -327,17 +331,17 @@ def command_line_input():
     '''
     parser = argparse.ArgumentParser()
     parser.add_argument('source', type=str,
-                        help='location of file with flights dataset')
+                        help='Location of file with flights dataset')
     parser.add_argument('-o', '--origin', type=str,
-                        required=True, help='origin of the flight')
+                        required=True, help='Airport code of origin of the flight, must be followed by the three letter airport code')
     parser.add_argument('-d', '--destination', type=str,
-                        required=True, help='destination of the flight')
-    parser.add_argument('-b', '--bags', type=int, required=False)
+                        required=True, help='Airport code of destination of the flight, must be followed by the three letter airport code')
+    parser.add_argument('-b', '--bags', type=int, required=False, help ='Number of bags you are travelling with')
     parser.add_argument('-r', '--return_ticket',
-                        action='store_true', required=False)
+                        action='store_true', required=False , help ='Searches also for return path')
 
     parser.add_argument('-s', '--save',
-                        action='store_true', required=False)
+                        action='store_true', required=False, help ='Saves results in json file')
     args = parser.parse_args()
 
     arguments = {
@@ -349,7 +353,7 @@ def command_line_input():
         'save_flag': args.save
     }
 
-    if args.bags != None:
+    if args.bags is not None:
         arguments['bag_number'] = int(args.bags)
 
     return arguments
@@ -361,15 +365,15 @@ def check_validity(user_input):
     :param user_input:  dict
     '''
     if user_input['source'] == user_input['origin'] == user_input['destination'] == '':
-        # need for messagebox with raise_error when no input  was provided
+        # No need for messagebox with raise_error when no input  was provided
         raise Exception('No input')
 
     if user_input['source'] == '':
-        raise_error("Adress of flight dataset is a required value")
+        raise_error('Adress of flight dataset is a required value')
     if user_input['origin'] == '':
-        raise_error("Origin of flight is a required value")
+        raise_error('Origin of flight is a required value')
     if user_input['destination'] == '':
-        raise_error("Destination  of flight is a required value")
+        raise_error('Destination  of flight is a required value')
 
     if not os.path.exists(user_input['source']):
         raise_error(f"file address '{user_input['source']}' is not valid!")
@@ -410,7 +414,7 @@ if __name__ == '__main__':
 
     flight_conections = FlightConnections(user_input)
 
-    if flight_conections.flight_paths_output != None:
+    if flight_conections.flight_paths_output is not None:
         print(flight_conections.flight_paths_output)
     else:
         print('Sorry, no flights satisfying your request were found.')
