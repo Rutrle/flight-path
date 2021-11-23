@@ -8,6 +8,7 @@ import tkinter
 from tkinter import ttk, messagebox
 from copy import deepcopy
 
+
 class FlightConnections:
     '''
     Takes in 'user_input'
@@ -67,6 +68,19 @@ class FlightConnections:
         '''
 
         def _inner_find_all_paths(inbound_flight, dst, current_path, flight_data, current_visited, bags_num, return_flight):
+            '''
+            Uses backtracking to find all avaiable paths in 'flight_data' between 'inbound_flight' destination and
+            whole journey destination 'dst', in conformity with number of bags 'bags_num',
+            not visiting any of the already visited 'current_visited' airports
+            In case 'return_flight' is true, then after finding journey destination goes back to journey origin
+            :param inbound_flight: dict
+            :param dst: string
+            :param current_path: list
+            :param flight_data: dict
+            :param current_visited: list
+            :param bags_num: int
+            :param return_ticket: boolean
+            '''
 
             current_path.append((inbound_flight))
             current_visited.append(inbound_flight['destination'])
@@ -146,18 +160,18 @@ class FlightConnections:
 
         if origin not in flight_data:
             raise_error(
-                f'Wrong input, no airport named \'{origin}\' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}')
+                f"Wrong input, no airport named '{origin}' in provided flights data \nValid airport codes in provided flights data:  {valid_airports}")
 
         if destination not in flight_data:
             raise_error(
-                f'Wrong input, no airport named \'{destination}\' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}')
+                f"Wrong input, no airport named '{destination}' in provided flights data\nValid airport codes in provided flights data:  {valid_airports}")
 
     def convert_to_JSON(self, flight_paths, user_input):
         '''
         Converts 'flight_paths' to correct output format
         and then returns and saves the ouput in json format
         :param flight_paths: list
-        :param bag_num: int
+        :param user_input: dictionary
         :returns: json list
         '''
         json_export = []
@@ -178,7 +192,7 @@ class FlightConnections:
         else:
             file_name = f"{user_input['origin']}-{user_input['destination']}_flight_paths.json"
 
-        result_address = os.path.join('results',file_name)
+        result_address = os.path.join('results', file_name)
 
         if user_input['save_flag']:
             with open(result_address, mode='w') as write_file:
@@ -336,12 +350,13 @@ def command_line_input():
                         required=True, help='Airport code of origin of the flight, must be followed by the three letter airport code')
     parser.add_argument('-d', '--destination', type=str,
                         required=True, help='Airport code of destination of the flight, must be followed by the three letter airport code')
-    parser.add_argument('-b', '--bags', type=int, required=False, help ='Number of bags you are travelling with')
+    parser.add_argument('-b', '--bags', type=int, required=False,
+                        help='Number of bags you are travelling with')
     parser.add_argument('-r', '--return_ticket',
-                        action='store_true', required=False , help ='Searches also for return path')
+                        action='store_true', required=False, help='Searches also for return path')
 
     parser.add_argument('-s', '--save',
-                        action='store_true', required=False, help ='Saves results in json file')
+                        action='store_true', required=False, help='Saves results in json file')
     args = parser.parse_args()
 
     arguments = {

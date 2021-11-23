@@ -1,17 +1,15 @@
 needs to be done:
  - write proper readme
- - finish documentation in python code
  - general refactoring
  - for return flights calculate travel time in more intelligent way
  - check that both inputs are the same
- - finish with the " for f-strings and '
 
 README
 ##
 
 
 ## Install
-no installation is needed, project uses only standard library of Python 3.6
+no installation is needed, project uses only standard library of Python 3.7
 
 ## What it does
 
@@ -45,6 +43,7 @@ save - [-s, --save] - if used, results are saved as a .JSON file, optional argum
 
 
 *GUI usage*
+
 
 
 
