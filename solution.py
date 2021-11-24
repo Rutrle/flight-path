@@ -32,6 +32,7 @@ class FlightConnections:
         Reads csv file with flights data on 'source' path and returns
         them as dictionary where key to the list of flights is their origin
         :param source: str path
+        :returns: dict
         '''
 
         with open(source, 'r') as flight_data_file:
@@ -79,7 +80,7 @@ class FlightConnections:
             :param flight_data: dict
             :param current_visited: list
             :param bags_num: int
-            :param return_ticket: boolean
+            :param return_flight: boolean
             '''
 
             current_path.append((inbound_flight))
@@ -258,7 +259,7 @@ class GUIInput:
         :param root: tkinter Tk object
         '''
         source_label = tkinter.Label(
-            root, text='Adress of flights dataset*', font=('calibre', 10, 'bold'))
+            root, text='Address of flights dataset*', font=('calibre', 10, 'bold'))
         source_entry = tkinter.Entry(root, font=(
             'calibre', 10, 'normal'), borderwidth=3, width=30)
 
@@ -281,7 +282,7 @@ class GUIInput:
 
         return_flag = tkinter.IntVar()
         return_ticket_label = tkinter.Label(
-            root, text='Return possible?', font=('calibre', 10, 'bold'))
+            root, text='Return ticket', font=('calibre', 10, 'bold'))
         return_ticket_check = tkinter.Checkbutton(root, variable=return_flag)
 
         save_flag = tkinter.IntVar()
@@ -325,12 +326,14 @@ class GUIInput:
 
         if bags_num == '':
             bags_num = 0
+               
+
 
         self.arguments = {
             'source': source,
             'origin': origin,
             'destination': destination,
-            'bag_number': int(bags_num),
+            'bag_number': bags_num,
             'return_flag': bool(return_flag),
             'save_flag': bool(save_flag)
         }
@@ -369,7 +372,7 @@ def command_line_input():
     }
 
     if args.bags is not None:
-        arguments['bag_number'] = int(args.bags)
+        arguments['bag_number'] = args.bags
 
     return arguments
 
@@ -409,7 +412,7 @@ def raise_error(error_message):
 def input_control():
     '''
     switches between command line and GUI user input depending on with
-    how many arguments the script was started and returns it afterwards
+    how many arguments the script was started and returns it after a bit of cleanup
     :returns: dict
     '''
 
@@ -419,6 +422,12 @@ def input_control():
     else:
         gui_input = GUIInput()
         user_input = gui_input.arguments
+
+    try:
+        user_input['bag_number'] = int(user_input['bag_number'])
+
+    except ValueError:
+        raise_error('Please enter only numbers for number of bags')
 
     return user_input
 
