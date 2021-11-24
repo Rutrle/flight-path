@@ -11,7 +11,9 @@ from copy import deepcopy
 
 class FlightConnections:
     '''
-    Takes in 'user_input'
+    Takes in 'user_input', reads flight data from address provided in 'user_input' and finds
+    all possible flight paths according to it and stores them into 'flight_paths_output' attribute,
+    either in .json format, if some paths are found ot as a None if no paths are found
     :param user_input: dictionary
     '''
 
@@ -135,7 +137,7 @@ class FlightConnections:
         :param bags_num: int
         :param layover_min: int
         :param layover_max: int
-        :returns: boolean
+        :returns: bool
         '''
         layover_time = (flight['departure'] - previous_arrival)
         layover_ok = datetime.timedelta(
@@ -241,7 +243,7 @@ class FlightConnections:
 
 class GUIInput:
     '''
-    Creates tkinter window for filling info for finding
+    Creates tkinter window for filling user inputs for finding
     flight paths, saves them as 'arguments' attribute
     '''
 
@@ -326,8 +328,6 @@ class GUIInput:
 
         if bags_num == '':
             bags_num = 0
-               
-
 
         self.arguments = {
             'source': source,
@@ -343,7 +343,8 @@ class GUIInput:
 
 def command_line_input():
     '''
-    Takes in user input from command line
+    Takes in user input from command line,
+     and returns is as a dictionary
     :returns: dictionary
     '''
     parser = argparse.ArgumentParser()
@@ -379,7 +380,8 @@ def command_line_input():
 
 def check_validity(user_input):
     '''
-    checks validity of 'user_input'
+    checks validity of 'user_input', if not valid
+    calls raise_error (or raise Exception by itself)
     :param user_input:  dict
     '''
     if user_input['source'] == user_input['origin'] == user_input['destination'] == '':
@@ -394,7 +396,7 @@ def check_validity(user_input):
         raise_error('Destination  of flight is a required value')
 
     if not os.path.exists(user_input['source']):
-        raise_error(f"file address '{user_input['source']}' is not valid!")
+        raise_error(f"File address '{user_input['source']}' is not valid!")
 
 
 def raise_error(error_message):
@@ -412,7 +414,7 @@ def raise_error(error_message):
 def input_control():
     '''
     switches between command line and GUI user input depending on with
-    how many arguments the script was started and returns it after a bit of cleanup
+    how many arguments the script was started and returns the input after a bit of cleanup
     :returns: dict
     '''
 
