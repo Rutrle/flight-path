@@ -1,9 +1,7 @@
 ### Find flight paths
 
 ## What it does
-This script (solution.py) finds all possible paths between chosen origin and destination airport, according to supplied .csv flights data and user input and prints the results in JSON format. Optionally, user can choose number of bags he wants to travel with, if he want also all possible return flights to be found as well and also if the results should be saved in .JSON file. There are two possibilities how to run it, either through GUI or through supplying arguments directly through command line.
-
-Script consist of class FlightConnections
+This script (solution.py) finds all possible paths between chosen origin and destination airport, according to supplied .csv flights data and user input and prints the results in JSON format. Optionally, user can choose number of bags he wants to travel with, if he want also all possible return flights to be found as well (with) and also if the results should be saved in .JSON file. There are two possibilities how to run it, either through GUI or through supplying arguments directly through command line.
 
 ## Install
 no installation is needed, script is run directly and project uses only standard library of Python 3.7

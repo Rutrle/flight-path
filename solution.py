@@ -97,7 +97,7 @@ class FlightConnections:
 
                     for new_flightpath in flight_data[dst]:
                         flightpath_ok = self.flightpath_valid(
-                            new_flightpath, new_visited, inbound_flight['arrival'], bags_num, 1, 504)
+                            new_flightpath, new_visited, inbound_flight['arrival'], bags_num, 1, 672)
 
                         if flightpath_ok:
                             _inner_find_all_paths(
