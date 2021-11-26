@@ -1,4 +1,4 @@
-### Find flight paths
+# Find flight paths
 
 ## What it does
 This script (solution.py) finds all possible paths between chosen origin and destination airport, according to supplied .csv flights data and user input and prints the results in JSON format. Optionally, user can choose number of bags he wants to travel with, if he want also all possible return flights to be found as well (with) and also if the results should be saved in .JSON file. There are two possibilities how to run it, either through GUI or through supplying arguments directly through command line.
@@ -15,9 +15,11 @@ There are two ways how to run this script:
 Regardless of the way of launching the script, the results are printed in json format into the console.
 If option to save the result was used, results are save also in JSON file in results folder.
 
-*GUI usage*
+### GUI usage
 When script is started either directly, or from command line with no arguments, GUI is started(as can be seen in GUI_example.png)
 following arguments can be entered into the GUI:
+![GUI example](/GUI_example.PNG)
+
 required argument:
  - Address of flight dataset - enter address of csv file with flights data
  - Origin airport code - enter three letter code of origin airport (from where your journey should start)
@@ -28,7 +30,7 @@ optional arguments:
  - Return ticket - if checked, all possible paths are found from origin aitport to destination airport and back
  - Save results - if checked, results of search are saved as .JSON file in 'results' folder
 
-*Command line usage* :
+### Command line usage
 input schema: python solution.py <source required> -o  <origin required> -d <destination required> -b <bag_number optional> -r -s
 
 example input : python solution.py data.csv -o  DHE -d EZO -b 2 -r -s
