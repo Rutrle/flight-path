@@ -16,7 +16,12 @@ Regardless of the way of launching the script, the results are printed in json f
 If option to save the result was used, results are save also in JSON file in results folder.
 
 ### GUI usage
-When script is started either directly, or from command line with no arguments, GUI is started(as can be seen in GUI_example.png)
+When script is started either directly:
+```
+python solution.py
+```
+
+or from command line with no arguments, GUI is started(as can be seen in GUI_example.png)
 following arguments can be entered into the GUI:
 ![GUI example](/GUI_example.PNG)
 
@@ -35,7 +40,10 @@ input schema:
 ```
 python solution.py <source required> -o  <origin required> -d <destination required> -b <bag_number optional> -r -s
 ```
-example input : python solution.py data.csv -o  DHE -d EZO -b 2 -r -s
+example input :
+```
+python solution.py data.csv -o  DHE -d EZO -b 2 -r -s
+```
 
 takes in flight data from 'data.csv' file and find all paths from origin 'DHE' to destination 'EZO' and then back to the origin
 'DHE' (because of the '-r'), taking in account that you want to travel with 2 bags. Results are then printed in json format
