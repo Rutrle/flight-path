@@ -3,6 +3,8 @@
 ## What it does
 This script (solution.py) finds all possible paths between chosen origin and destination airport, according to supplied .csv flights data and user input and prints the results in JSON format. Optionally, user can choose number of bags he wants to travel with, if he want also all possible return flights to be found as well (with) and also if the results should be saved in .JSON file. There are two possibilities how to run it, either through GUI or through supplying arguments directly through command line.
 
+It was originally made both as a way to practice working with backtracking, recursions and with user input and as a solution to Kiwi christmass python weekend challenge.
+
 ## Install
 no installation is needed, script is run directly and project uses only standard library of Python 3.7
 
@@ -23,6 +25,7 @@ python solution.py
 
 or from command line with no arguments, GUI is started(as can be seen in GUI_example.png)
 following arguments can be entered into the GUI:
+
 ![GUI example](/GUI_example.PNG)
 
 required argument:
@@ -36,11 +39,11 @@ optional arguments:
  - Save results - if checked, results of search are saved as .JSON file in 'results' folder
 
 ### Command line usage
-input schema:
+**input schema:**
 ```
 python solution.py <source required> -o  <origin required> -d <destination required> -b <bag_number optional> -r -s
 ```
-example input :
+**example input :**
 ```
 python solution.py data.csv -o  DHE -d EZO -b 2 -r -s
 ```
