@@ -31,8 +31,10 @@ optional arguments:
  - Save results - if checked, results of search are saved as .JSON file in 'results' folder
 
 ### Command line usage
-input schema: python solution.py <source required> -o  <origin required> -d <destination required> -b <bag_number optional> -r -s
-
+input schema:
+''' 
+python solution.py <source required> -o  <origin required> -d <destination required> -b <bag_number optional> -r -s
+'''
 example input : python solution.py data.csv -o  DHE -d EZO -b 2 -r -s
 
 takes in flight data from 'data.csv' file and find all paths from origin 'DHE' to destination 'EZO' and then back to the origin
