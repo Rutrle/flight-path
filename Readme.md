@@ -1,7 +1,7 @@
 # Find flight paths
 
 ## What it does
-This script (solution.py) finds all possible paths between chosen origin and destination airport, according to supplied .csv flights data and user input and prints the results in JSON format. Optionally, user can choose number of bags he wants to travel with, if he want also all possible return flights to be found as well (with) and also if the results should be saved in .JSON file. There are two possibilities how to run it, either through GUI or through supplying arguments directly through command line.
+This script (solution.py) finds all possible paths between chosen origin and destination airport, according to supplied .csv flights data (can be found in 'example' folder) and user input and prints the results in JSON format. Optionally, user can choose number of bags he wants to travel with, if he want also all possible return flights to be found as well (with) and also if the results should be saved in .JSON file. There are two possibilities how to run it, either through GUI or through supplying arguments directly through command line.
 
 It was originally made both as a way to practice working with backtracking, recursions and with user input and as a solution to Kiwi christmass python weekend challenge.
 
@@ -28,7 +28,7 @@ following arguments can be entered into the GUI:
 
 ![GUI example](/GUI_example.PNG)
 
-required argument:
+required arguments:
  - Address of flight dataset - enter address of csv file with flights data
  - Origin airport code - enter three letter code of origin airport (from where your journey should start)
  - Destination airport code - enter three letter code of destination airport (from where your journey should end)
